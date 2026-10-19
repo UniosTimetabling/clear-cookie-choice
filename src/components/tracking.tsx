@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { browserOptedOut, getConsent, installTracking, setConsent, trackPageView } from "@/lib/tracking";
 
@@ -6,6 +6,7 @@ import { browserOptedOut, getConsent, installTracking, setConsent, trackPageView
 export function Tracking() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [showBanner, setShowBanner] = useState(false);
+  const barRef = useRef<HTMLDivElement>(null);
   const [consentTick, setConsentTick] = useState(0);
 
   useEffect(() => {
@@ -28,13 +29,24 @@ export function Tracking() {
     };
   }, []);
 
-  if (!showBanner || pathname.startsWith("/admin")) return null;
+  const visible = showBanner && !pathname.startsWith("/admin");
+  useEffect(() => {
+    const root = document.documentElement;
+    const el = barRef.current;
+    if (!visible || !el) { root.style.removeProperty("--consent-h"); return; }
+    const set = () => root.style.setProperty("--consent-h", `${el.offsetHeight + 8}px`);
+    set();
+    const ro = new ResizeObserver(set);
+    ro.observe(el);
+    return () => { ro.disconnect(); root.style.removeProperty("--consent-h"); };
+  }, [visible]);
+  if (!visible) return null;
   const choose = (v: "granted" | "denied") => {
     setConsent(v);
     setShowBanner(false);
   };
   return (
-    <div role="dialog" aria-label="Cookie choices" className="fixed inset-x-2 bottom-2 z-[60] sm:inset-x-4 sm:bottom-4">
+    <div ref={barRef} role="dialog" aria-label="Cookie choices" className="fixed inset-x-2 bottom-2 z-[60] sm:inset-x-4 sm:bottom-4">
       <div className="flex flex-col gap-3 rounded-2xl border border-border/60 bg-background/70 px-4 py-3 shadow-soft backdrop-blur-md sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <p className="text-sm text-foreground">
           We use cookies to improve your experience.{" "}
