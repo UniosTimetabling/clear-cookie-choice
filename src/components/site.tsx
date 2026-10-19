@@ -3,7 +3,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { useEffect, useState, type ReactNode } from "react";
 import { Calculator, ChevronDown, ShoppingCart, Heart, Menu, Phone, ShoppingBag, Star, User, X, MessageCircle, Mail, MapPin, ArrowUp } from "lucide-react";
-import logo from "@/assets/logo.png.asset.json";
+import logo from "@/assets/logo.png";
 import { hasOptions, ksh, site, type Product } from "@/lib/data";
 import { useCart } from "@/lib/cart";
 
