@@ -36,7 +36,7 @@ export function Header() {
       </div>
       <div className="container-x flex h-16 items-center justify-between gap-3 py-2 sm:h-18 sm:gap-6">
         <Link to="/" className="flex min-w-0 items-center gap-2.5">
-          <img src={logo.url} alt="Hope & HomeKe" className="h-9 w-9 shrink-0 rounded-full object-contain sm:h-10 sm:w-10" />
+          <img src={logo} alt="Hope & HomeKe" className="h-9 w-9 shrink-0 rounded-full object-contain sm:h-10 sm:w-10" />
           <span className="truncate whitespace-nowrap font-display text-lg font-semibold sm:text-xl">Hope <span className="text-accent">&</span> HomeKe</span>
         </Link>
         <nav className="hidden items-center gap-6 xl:flex">
