@@ -53,14 +53,14 @@ export function Header() {
           </div>
           <Link to="/self-quote" className="btn-accent !px-4 !py-2"><Calculator className="h-4 w-4" />Get Self Quote</Link>
         </nav>
-        <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
-          <Link to="/account/wishlist" className="hidden rounded-full p-2.5 hover:bg-muted sm:inline-flex" aria-label="Wishlist"><Heart className="h-5 w-5" /></Link>
-          <Link to="/login" className="rounded-full p-2.5 hover:bg-muted" aria-label="Account"><User className="h-5 w-5" /></Link>
-          <Link to="/cart" className="relative rounded-full p-2.5 hover:bg-muted" aria-label="Cart">
-            <ShoppingBag className="h-5 w-5" />
-            {count > 0 && <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-accent px-1 text-[10px] font-bold text-accent-foreground">{count}</span>}
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <Link to="/account/wishlist" className="icon-btn hidden sm:grid" aria-label="Wishlist"><Heart className="h-4 w-4" /></Link>
+          <Link to="/login" className="icon-btn" aria-label="Account"><User className="h-4 w-4" /></Link>
+          <Link to="/cart" className="icon-btn relative" aria-label="Cart">
+            <ShoppingBag className="h-4 w-4" />
+            {count > 0 && <span className="absolute -right-1 -top-1 grid h-4.5 min-w-4.5 place-items-center rounded-full bg-accent px-1 text-[10px] font-bold text-accent-foreground">{count}</span>}
           </Link>
-          <button className="rounded-full p-2.5 hover:bg-muted xl:hidden" onClick={() => setOpen(!open)} aria-label="Menu">{open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
+          <button className="icon-btn xl:hidden" onClick={() => setOpen(!open)} aria-label="Menu">{open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}</button>
         </div>
       </div>
       {open && (
