@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { browserOptedOut, getConsent, installTracking, setConsent, trackPageView } from "@/lib/tracking";
 
@@ -6,6 +6,7 @@ import { browserOptedOut, getConsent, installTracking, setConsent, trackPageView
 export function Tracking() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [showBanner, setShowBanner] = useState(false);
+  const barRef = useRef<HTMLDivElement>(null);
   const [consentTick, setConsentTick] = useState(0);
 
   useEffect(() => {
