@@ -121,7 +121,7 @@ export function WhatsAppIcon({ className = "" }: { className?: string }) {
 
 export function WhatsAppFab() {
   return (
-    <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer" aria-label="Chat with us on WhatsApp" className="fixed bottom-4 right-4 z-40 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-soft transition hover:scale-110 sm:bottom-6 sm:right-6 sm:h-16 sm:w-16">
+    <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer" aria-label="Chat with us on WhatsApp" style={{ bottom: "calc(var(--fab-base, 1rem) + var(--consent-h, 0px))" }} className="fixed bottom-4 right-4 z-40 transition-[bottom] grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-soft transition hover:scale-110 sm:bottom-6 sm:right-6 sm:h-16 sm:w-16">
       <span className="absolute inset-0 rounded-full bg-whatsapp animate-wa-ring" aria-hidden="true" />
       <WhatsAppIcon className="relative h-8 w-8 sm:h-9 sm:w-9" />
     </a>
@@ -193,7 +193,7 @@ export function ProductCard({ p }: { p: Product }) {
         <button onClick={() => toggleWish(p.slug)} aria-label="Save" className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-background/90">
           <Heart className={`h-4 w-4 ${wished ? "fill-accent text-accent" : ""}`} />
         </button>
-        <button onClick={onAdd} className="btn-primary absolute inset-x-2 bottom-2 !px-3 !py-2 text-xs transition sm:inset-x-3 sm:bottom-3 sm:!py-3 sm:text-sm [@media(hover:hover)]:translate-y-16 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100"><ShoppingCart className="h-4 w-4" />Add to cart</button>
+        <button onClick={onAdd} className="btn-primary absolute inset-x-2 bottom-2 [@media(hover:none)]:!hidden !px-3 !py-2 text-xs transition sm:inset-x-3 sm:bottom-3 sm:!py-3 sm:text-sm [@media(hover:hover)]:translate-y-16 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100"><ShoppingCart className="h-4 w-4" />Add to cart</button>
       </div>
       <div className="mt-3 flex flex-col gap-2 sm:mt-4 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
         <div className="min-w-0">
@@ -201,13 +201,13 @@ export function ProductCard({ p }: { p: Product }) {
           <Link to="/products/$slug" params={{ slug: p.slug }} className="mt-1 block font-display text-base leading-tight sm:text-lg hover:text-accent">{p.name}</Link>
           <div className="mt-1.5"><Stars n={p.rating} /></div>
         </div>
-        <div className="flex items-start justify-between gap-3 sm:shrink-0 sm:flex-col sm:items-end">
+        <div className="flex flex-col gap-2 sm:shrink-0 sm:items-end">
           <div className="flex flex-wrap items-baseline gap-x-2 sm:block sm:text-right">
             <p className="font-semibold">{ksh(p.price)}</p>
             {p.oldPrice && <p className="text-xs text-muted-foreground line-through">{ksh(p.oldPrice)}</p>}
             {p.unit && <p className="text-xs text-muted-foreground">{p.unit}</p>}
           </div>
-          <button onClick={onAdd} aria-label={`Add ${p.name} to cart`} title="Add to cart" className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-glow px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-glow-foreground animate-glow transition hover:scale-105">
+          <button onClick={onAdd} aria-label={`Add ${p.name} to cart`} title="Add to cart" className="inline-flex w-full shrink-0 items-center justify-center gap-1.5 rounded-full bg-glow sm:w-auto px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-glow-foreground animate-glow transition hover:scale-105">
             <ShoppingCart className="h-3.5 w-3.5" />
             <span>Add to cart</span>
           </button>
